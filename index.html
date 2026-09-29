@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Opening YouTube...</title>
+  <script>
+    var channelHandle = "PITmanuever";
+    var fallbackUrl = "https://www.youtube.com/@" + channelHandle + "?sub_confirmation=1";
+    var isAndroid = /android/i.test(navigator.userAgent);
+    var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isAndroid) {
+      window.location.href = "intent://www.youtube.com/@" + channelHandle + "?sub_confirmation=1#Intent;package=com.google.android.youtube;scheme=https;end";
+    } else if (isIOS) {
+      window.location.href = "vnd.youtube://www.youtube.com/@" + channelHandle + "?sub_confirmation=1";
+      setTimeout(function() {
+        window.location.href = fallbackUrl;
+      }, 1000);
+    } else {
+      window.location.href = fallbackUrl;
+    }
+  </script>
+</head>
+<body style="background:#0e0e0e; color:#fff; font-family:sans-serif; text-align:center; padding-top:25vh;">
+  <h2>Redirecting to YouTube...</h2>
+  <p>If the app didn't open automatically, <a href="https://www.youtube.com/@PITmanuever?sub_confirmation=1" style="color:#ff0000; font-weight:bold;">tap here</a>.</p>
+</body>
+</html>
